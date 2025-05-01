@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Web Page</title>
+    <link rel="stylesheet" href="tag-selector.css">
+
+    <script src="tag-selector.js"></script>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+        }
+
+        .tags {
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Tag selector</h1>
+    <div class="tags">
+        <input type="text" id="input" placeholder="Go!" />
+    </div>
+    <script>
+        TagSelector.render('input', {
+            tags: [
+                {name: 'Politics', value: 'politics'},
+                {name: 'Economy', value: 'economy'},
+                {name: 'Health', value: 'health'},
+                {name: 'Education', value: 'education'},
+                {name: 'Environment', value: 'environment'},
+            ]
+        });
+    </script>
+</body>
+</html>

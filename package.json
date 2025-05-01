@@ -1,0 +1,18 @@
+{
+    "name": "tag-selector",
+    "version": "1.0.0",
+    "description": "SweetAlert inspired confirmation dialog with minimum design",
+    "main": "tag-selector.min.js",
+    "scripts": {
+      "start": "http-server",
+      "minify": "uglifyjs tag-selector.js -o tag-selector.min.js; uglifycss tag-selector.css --output tag-selector.min.css"
+    },
+    "author": "izisaurio <izi.isaac@gmail.com>",
+    "license": "MIT",
+    "devDependencies": {
+      "http-server": "^14.1.1",
+      "uglify-js": "^3.19.3",
+      "uglifycss": "^0.0.29"
+    }
+  }
+  
