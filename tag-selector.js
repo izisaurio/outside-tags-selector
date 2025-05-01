@@ -1,6 +1,13 @@
 
 const TagSelector = {
     render: async function(selector, userOptions) {
+        //Get element from id
+        const element = document.getElementById(selector);
+        if (element.hasAttribute('tagselector')) {
+            return;
+        }
+        element.setAttribute('tagselector', 'true');
+
         // Default options
         const options = {
             placeholder: 'Type to filter...',
@@ -11,9 +18,6 @@ const TagSelector = {
             tags : [], // Tag must have a name and a value
             ...userOptions,
         }
-
-        //Get element from id
-        const element = document.getElementById(selector);
 
         let selectedTags = [];
 
