@@ -1,7 +1,7 @@
 {
-    "name": "tag-selector",
+    "name": "outside-tags-selector",
     "version": "1.0.0",
-    "description": "SweetAlert inspired confirmation dialog with minimum design",
+    "description": "A simple tag selector with elements outside of the main input.",
     "main": "tag-selector.min.js",
     "scripts": {
       "start": "http-server",
