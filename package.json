@@ -1,6 +1,6 @@
 {
     "name": "outside-tags-selector",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A simple tag selector with elements outside of the main input.",
     "main": "tag-selector.min.js",
     "scripts": {
