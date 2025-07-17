@@ -19,6 +19,7 @@ const TagSelector = {
             ...userOptions,
         }
 
+        let allTags = [];
         let selectedTags = [];
 
         // Change the element to a hidden input
@@ -69,47 +70,70 @@ const TagSelector = {
             removeTagButton.textContent = '✕';
             tagElement.appendChild(removeTagButton);
 
+            //Add tag to collection
+            allTags.push(tagElement);
+
             // Add click event to remove the tag
             tagElement.addEventListener('click', function(ev) {
                 ev.preventDefault();
 
                 if (selectedTags.includes(this.dataset.value)) {
-                    // Remove the tag from the selected tags
-                    selectedTags = selectedTags.filter(tag => tag !== this.dataset.value);
-
-                    // Remove the tag element from the container
-                    this.remove();
-
-                    this.classList.remove('is-tag-selector-selected');
-
-                    // Update the hidden input value
-                    element.value = selectedTags.join(options.delimiter);
-
-                    // Update tags container
-                    tagsContainer.appendChild(tagElement);
+                    removeTag(this.dataset.value);
                 }
                 else {
-                    // Add the tag to the selected tags
-                    selectedTags = [...selectedTags, this.dataset.value];
-
-                    // Remove the tag element from the container
-                    this.remove();
-
-                    this.classList.add('is-tag-selector-selected');
-
-                    // Update the hidden input value
-                    element.value = selectedTags.join(options.delimiter);
-
-                    // Update tags container
-                    input.prepend(tagElement);
+                    addTag(this.dataset.value);
                 }
-
-                console.log(element.value);
             });
         });
+
+        //Remove tag
+        const removeTag = (value) => {
+            // Remove the tag from the selected tags
+            selectedTags = selectedTags.filter(tag => tag !== value);
+
+            //Get the tag element
+            const tagElement = allTags.find(t => t.dataset.value == value);
+
+            // Remove the tag element from the container
+            tagElement.remove();
+
+            tagElement.classList.remove('is-tag-selector-selected');
+
+            // Update the hidden input value
+            element.value = selectedTags.join(options.delimiter);
+
+            // Update tags container
+            tagsContainer.appendChild(tagElement);
+        }
+
+        //Add tag
+        const addTag = (value) => {
+            // Add the tag to the selected tags
+            selectedTags = [...selectedTags, value];
+
+            //Get the tag element
+            const tagElement = allTags.find(t => t.dataset.value == value);
+
+            // Update the hidden input value
+            element.value = selectedTags.join(options.delimiter);
+
+            // Remove the tag element from the container
+            tagElement.remove();
+
+            tagElement.classList.add('is-tag-selector-selected');
+
+            // Update tags container
+            input.prepend(tagElement);
+        }
 
         // Insert input and container into body after the element
         element.parentNode.insertBefore(tagsContainer, element.nextSibling);
         element.parentNode.insertBefore(input, element.nextSibling);
+
+        // Get element default values and add the tags
+        const defaultValues = element.value.split(',').filter(v => v != '');
+        for (let key in defaultValues) {
+            addTag(defaultValues[key]);
+        }
     }
 };
